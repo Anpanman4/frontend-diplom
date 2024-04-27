@@ -1,0 +1,10 @@
+.catalog {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__container {
+    display: grid;
+    grid-auto-columns: 300px;
+  }
+}
