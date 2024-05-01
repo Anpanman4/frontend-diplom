@@ -1,5 +1,21 @@
+:root {
+  --color-white: #fff;
+  --color-black: #000;
+  --color-dark-blue: #023047;
+  --color-blue: #219ebc;
+  --color-light-blue: #8ecae6;
+  --color-yellow: #ffb703;
+  --color-orange: #fb8501;
+  --color-red: #d93838;
+  --color-green: #3f6f37;
+  --color-gray-1: #333;
+  --color-gray-2: #626262;
+  --color-gray-3: #939393;
+  --color-gray-4: #c4c4c4;
+  --color-gray-5: #ddd;
+}
+
 .page {
-  max-width: 1440px;
   width: 100%;
   display: flex;
   flex-direction: column;

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import './product-card.scss';
 
-import { Text } from 'components/theme/text/text';
-import { Title } from 'components/theme/title/title';
+import { Text } from '../text/text';
+import { Title } from '../title/title';
 
 export type ProductCardProps = {
   title: string;

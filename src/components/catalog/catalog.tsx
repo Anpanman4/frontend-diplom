@@ -1,20 +1,28 @@
 import React, { FC } from 'react';
 import './catalog.scss';
 
-import ProductCard from 'components/theme/product-card/product-card';
-import { ProductType } from 'http/types';
+import { ProductType } from '../../http/types';
+import Input from '../theme/input/input';
+import ProductCard from '../theme/product-card/product-card';
 
 export type CatalogProps = {
-  products: ProductType[] | [];
+  products: ProductType[] | undefined;
 };
 
 const Catalog: FC<CatalogProps> = ({ products }) => {
   return (
     <section className="catalog">
+      <Input />
       <ul className="catalog__container">
-        {products.map((product) => (
-          <ProductCard title={product.title} price="600" />
-        ))}
+        {products &&
+          products.map((product) => {
+            return (
+              <ProductCard
+                title={product.title}
+                price={product.price ? product.price : '600'}
+              />
+            );
+          })}
       </ul>
     </section>
   );

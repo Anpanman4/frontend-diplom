@@ -10,7 +10,7 @@ import './title.scss';
 import classNames from 'classnames';
 import mergeRefs from 'merge-refs';
 
-import { AsProps, DefaultElement, Props } from 'utils/props-types';
+import { AsProps, DefaultElement, Props } from '../../../utils/props-types';
 
 type TitleElement = HTMLHeadingElement;
 type TitleElementProps = DetailedHTMLProps<
