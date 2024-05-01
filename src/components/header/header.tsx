@@ -6,12 +6,10 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import basketIcon from '../../images/svg/basket.svg';
 import logoIcon from '../../images/svg/logo.svg';
 
-export type HeaderProps = {};
+export type HeaderProps = { basketCount?: number };
 
-const Header: FC<HeaderProps> = () => {
+const Header: FC<HeaderProps> = ({ basketCount }) => {
   const navigate = useNavigate();
-
-  const number = 1;
 
   return (
     <header className="header">
@@ -63,7 +61,11 @@ const Header: FC<HeaderProps> = () => {
           }
         >
           <img src={basketIcon} alt="Корзина" />
-          {number && <div className="header__basket-text">{number}</div>}
+          {basketCount && (
+            <div className="header__basket-text">
+              {basketCount <= 9 ? basketCount : '9+'}
+            </div>
+          )}
         </NavLink>
         <NavLink
           to="/private"

@@ -12,7 +12,7 @@ export type ButtonProps = Props<
 >;
 
 export const Button = memo<ButtonProps>(
-  ({ onClick, disabled, children, className }) => {
+  ({ onClick, disabled, children, className, ...restProps }) => {
     return (
       <button
         className={classNames(
@@ -24,6 +24,7 @@ export const Button = memo<ButtonProps>(
         )}
         onClick={onClick}
         disabled={disabled}
+        {...restProps}
       >
         {children}
       </button>

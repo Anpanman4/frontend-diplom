@@ -23,5 +23,14 @@
 
   &__button {
     margin: 32px 0 0;
+    height: 48px;
+  }
+
+  &__controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 32px 0 0;
   }
 }

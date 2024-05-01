@@ -8,3 +8,7 @@ export type ProductType = {
   image: string;
   isVisible: boolean;
 };
+
+export type ProductCountType = ProductType & {
+  count: number;
+};

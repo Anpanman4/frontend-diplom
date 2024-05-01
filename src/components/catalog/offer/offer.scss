@@ -1,0 +1,23 @@
+.offer {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 590px;
+  gap: 20px;
+  margin-top: 128px;
+
+  &__description {
+    display: block;
+    max-width: 415px;
+    margin-top: 24px;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__button {
+    margin-top: 18px;
+  }
+}

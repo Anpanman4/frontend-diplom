@@ -1,0 +1,17 @@
+.count-button {
+  width: 46px;
+  height: 48px;
+  font-size: 20px;
+  color: var(--color-black);
+  text-align: center;
+  background-color: var(--color-light-blue);
+  border: 0;
+  border-radius: 4px;
+  transition: all 0.1s ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    color: var(--color-white);
+    background-color: var(--color-dark-blue);
+  }
+}
