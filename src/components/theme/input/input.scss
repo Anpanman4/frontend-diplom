@@ -1,9 +1,64 @@
 .input {
+  display: flex;
+  flex-direction: column;
   position: relative;
+  max-width: 450px;
+  width: 100%;
+
+  &__label {
+    font-family: var(--font-family-default);
+    position: absolute;
+    top: 10px;
+    left: 18px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--color-gray-1);
+
+    &--big-text {
+      top: 21px;
+      font-size: 16px;
+      color: var(--color-gray-2);
+    }
+  }
+
+  &__container {
+    padding: 12px 16px;
+    border: 1px solid var(--color-gray-2);
+    border-radius: 6px;
+    outline: none;
+
+    &--label-text {
+      padding: 21px 16px;
+    }
+
+    &--label {
+      padding: 30px 16px 12px;
+    }
+
+    &--focus {
+      border-color: var(--color-gray-1);
+    }
+
+    &--error {
+      border-color: var(--color-red);
+    }
+  }
 
   &__icon {
+    display: flex;
+    align-items: center;
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 14px;
+    right: 16px;
+    cursor: pointer;
+
+    &--label {
+      top: 23px;
+    }
+  }
+
+  &__error-message {
+    margin-top: 4px;
+    color: var(--color-red);
   }
 }

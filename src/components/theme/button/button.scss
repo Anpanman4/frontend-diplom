@@ -1,0 +1,18 @@
+.hg-button {
+  width: 100%;
+  border: solid 1px var(--color-black);
+  border-radius: 6px;
+  padding: 12px 0;
+  background-color: transparent;
+  color: var(--color-black);
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--color-light-blue);
+  }
+
+  &--disabled {
+    background-color: var(--color-gray-4);
+    color: var(--color-white);
+  }
+}

@@ -1,35 +1,32 @@
 .hg-title {
-  font-size: 32px;
-  font-weight: 400;
+  font-family: var(--font-family-druk);
+  font-size: 24px;
+  font-weight: bold;
   line-height: 1.15;
   margin: 0;
   padding: 0;
-
-  &--medium {
-    font-weight: 600;
-  }
 
   &--short {
     line-height: 1;
   }
 
   &--1 {
-    font-size: 48px;
-  }
-
-  &--2 {
     font-size: 36px;
   }
 
+  &--2 {
+    font-size: 32px;
+  }
+
   &--4 {
-    font-size: 28px;
+    font-size: 16px;
   }
 
   &--5 {
-    font-size: 20px;
+    font-size: 15px;
   }
 
   &--6 {
-    font-size: 16px;
+    font-size: 14px;
   }
 }

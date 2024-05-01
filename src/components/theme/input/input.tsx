@@ -1,4 +1,4 @@
-import React, { ReactNode, memo } from 'react';
+import React, { ReactNode, memo, useState } from 'react';
 import './input.scss';
 
 import classNames from 'classnames';
@@ -13,9 +13,10 @@ export type InputProps = Props<
     icon?: ReactNode;
     onIconClick?: () => void;
     errorMessage?: string;
+    maxWidth?: string;
   },
   false,
-  JSX.IntrinsicElements['input']
+  Omit<JSX.IntrinsicElements['input'], 'onChange'>
 >;
 
 const Input = memo<InputProps>(
@@ -27,25 +28,53 @@ const Input = memo<InputProps>(
     onIconClick,
     placeholder,
     errorMessage,
+    maxWidth,
     className,
     ...restProps
   }) => {
+    const [isFocused, setIsFocused] = useState(false);
+
     return (
-      <div className="input">
-        {label && <label>{label}</label>}
+      <div className="input" style={{ maxWidth: `${maxWidth}` }}>
+        {label && (
+          <label
+            className={classNames('input__label', {
+              ['input__label--big-text']: !value
+            })}
+          >
+            {label}
+          </label>
+        )}
         <input
-          className={classNames('input__container', className)}
+          className={classNames('input__container', {
+            ['input__container--label-text']: label,
+            ['input__container--label']: label && value,
+            ['input__container--focus']: isFocused,
+            ['input__container--error']: errorMessage,
+            className
+          })}
           value={value}
-          onChange={onChange}
+          onChange={(e) => onChange && onChange(e.target.value)}
           placeholder={placeholder}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           {...restProps}
         />
         {!!icon && (
-          <div className="input__icon" onClick={onIconClick}>
+          <div
+            className={classNames('input__icon', {
+              ['input__icon--label']: label
+            })}
+            onClick={onIconClick}
+          >
             {icon}
           </div>
         )}
-        {errorMessage && <Text level={5}>{errorMessage}</Text>}
+        {errorMessage && (
+          <Text className="input__error-message" level={4}>
+            {errorMessage}
+          </Text>
+        )}
       </div>
     );
   }

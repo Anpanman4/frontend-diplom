@@ -20,13 +20,11 @@ type TitleElementProps = DetailedHTMLProps<
 
 type Level = 1 | 2 | 3 | 4 | 5 | 6;
 type Height = 'normal' | 'short';
-type Weight = 'regular' | 'medium';
 
 export type TitleProps = Props<
   AsProps & {
     level?: Level;
     height?: Height;
-    weight?: Weight;
   },
   true,
   TitleElementProps
@@ -44,7 +42,6 @@ const headingLevels: {
 };
 
 const defaultLevel: Level = 3;
-const defaultWeight: Weight = 'regular';
 const defaultHeight: Height = 'normal';
 
 export const Title: FC<TitleProps> = memo(
@@ -53,7 +50,6 @@ export const Title: FC<TitleProps> = memo(
       {
         level = defaultLevel,
         height = defaultHeight,
-        weight = defaultWeight,
         as: Component = headingLevels[level],
         className,
         ...restProps
@@ -68,8 +64,7 @@ export const Title: FC<TitleProps> = memo(
           'hg-title',
           {
             [`hg-title--${level}`]: level !== defaultLevel,
-            [`hg-title--${height}`]: height !== defaultHeight,
-            [`hg-title--${weight}`]: weight !== defaultWeight
+            [`hg-title--${height}`]: height !== defaultHeight
           },
           className,
           Component.props.className

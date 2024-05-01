@@ -1,3 +1,5 @@
+@import url(../../vendor/font/stylesheet.css);
+
 :root {
   --color-white: #fff;
   --color-black: #000;
@@ -13,6 +15,8 @@
   --color-gray-3: #939393;
   --color-gray-4: #c4c4c4;
   --color-gray-5: #ddd;
+  --font-family-default: 'Inter', sans-serif;
+  --font-family-druk: 'Druk Cyr';
 }
 
 .page {
@@ -21,4 +25,5 @@
   flex-direction: column;
   align-items: center;
   margin: 0 auto;
+  font-family: 'Inter', sans-serif;
 }

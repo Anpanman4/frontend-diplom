@@ -3,8 +3,8 @@ import './header.scss';
 
 import { NavLink, useNavigate } from 'react-router-dom';
 
-import basketIcon from '../../images/basket.svg';
-import logoIcon from '../../images/logo.svg';
+import basketIcon from '../../images/svg/basket.svg';
+import logoIcon from '../../images/svg/logo.svg';
 
 export type HeaderProps = {};
 
@@ -36,7 +36,7 @@ const Header: FC<HeaderProps> = () => {
             `header__link ${isActive ? 'header__link--active' : ''}`
           }
         >
-          Каталог
+          Косметика
         </NavLink>
         <NavLink
           to="/education"
@@ -59,11 +59,11 @@ const Header: FC<HeaderProps> = () => {
         <NavLink
           to="/offer"
           className={({ isActive }) =>
-            `header__link ${isActive ? 'header__link--active' : ''}`
+            `header__basket ${isActive ? 'header__basket--active' : ''}`
           }
         >
           <img src={basketIcon} alt="Корзина" />
-          {number && <div className="header__basket">{number}</div>}
+          {number && <div className="header__basket-text">{number}</div>}
         </NavLink>
         <NavLink
           to="/private"
