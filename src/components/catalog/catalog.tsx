@@ -40,21 +40,21 @@ const Catalog: FC<CatalogProps> = ({
       </Title>
       <ul className="catalog__types">
         <li className="catalog__type">
-          <Text>
+          <Text level={4}>
             Продумана так, чтобы у всех была возможность экспериментировать с
             текстурами и подбирать свой стайлинговый коктейль.
           </Text>
           <img src={catalog1} alt="Текстура" loading="lazy" />
         </li>
         <li className="catalog__type">
-          <Text>
+          <Text level={4}>
             Все продукты на водной основе, за счет чего их максимально комфортно
             наносить и распределять по волосам.
           </Text>
           <img src={catalog2} alt="Текстура" loading="lazy" />
         </li>
         <li className="catalog__type">
-          <Text>
+          <Text level={4}>
             Стайлинг не перегружает волосы, что дает возможность создавать свой
             укладочный микс под определенный тип волос и стиль.
           </Text>

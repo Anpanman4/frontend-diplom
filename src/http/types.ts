@@ -1,9 +1,7 @@
-type NumericId = number;
-
 export type UserBody = { email: string; password: string; firstName: string };
 
 export type ProductType = {
-  _id: NumericId;
+  _id: string;
   title: string;
   about: string;
   price: string;

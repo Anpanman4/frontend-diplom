@@ -22,6 +22,13 @@ class Api {
       .catch((err) => console.log(err));
   };
 
+  public getProductById = async (id: string) => {
+    return await axios
+      .get(`${this.url}/products/${id}`)
+      .then((data) => data.data)
+      .catch((err) => console.log(err));
+  };
+
   public registration = async (user: UserBody) => {
     return await axios
       .post(`${this.url}/register`, user)

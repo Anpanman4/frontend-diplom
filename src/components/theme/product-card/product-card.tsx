@@ -8,7 +8,7 @@ import { CountButton } from '../count-button/count-button';
 import { Text } from '../text/text';
 
 export type ProductCardProps = {
-  id: number;
+  id: string;
   title: string;
   price: string;
   img: string;
@@ -36,10 +36,10 @@ const ProductCard: FC<ProductCardProps> = ({
         alt={title}
         loading="lazy"
       />
-      <Text className="product-card__title" level={1}>
+      <Text className="product-card__title" level={3}>
         {title}
       </Text>
-      <Text className="product-card__price" level={1}>
+      <Text className="product-card__price" level={3}>
         {price}₽
       </Text>
       {count ? (

@@ -11,6 +11,7 @@ import Footer from '../footer/footer';
 import Header from '../header/header';
 import Main from '../main/main';
 import NotFound from '../not-found/not-found';
+import ProductId from '../product-id/product-id';
 import SignIn from '../sign/sign-in/sign-in';
 import SignUp from '../sign/sign-up/sign-up';
 
@@ -77,6 +78,17 @@ const App = () => {
                 path="/catalog"
                 element={
                   <Catalog
+                    products={products}
+                    basketProducts={basketProducts}
+                    addToBasket={addToBasket}
+                    reduceFromBasket={reduceFromBasket}
+                  />
+                }
+              />
+              <Route
+                path="/catalog/:id"
+                element={
+                  <ProductId
                     products={products}
                     basketProducts={basketProducts}
                     addToBasket={addToBasket}
