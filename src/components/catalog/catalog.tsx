@@ -85,6 +85,7 @@ const Catalog: FC<CatalogProps> = ({
             return (
               <ProductCard
                 key={product._id}
+                id={product._id}
                 title={product.title}
                 price={product.price ? product.price : '600'}
                 img={product.image}

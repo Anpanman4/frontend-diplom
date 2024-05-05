@@ -36,12 +36,11 @@ const Offer: FC<OfferType> = () => {
           onChange={setMobile}
           label="Номер телефона"
           maxWidth="none"
-          errorMessage={mobile}
         />
         <Input
           value={comment}
           onChange={setComment}
-          placeholder="Комментарии"
+          label="Комментарии"
           maxWidth="none"
         />
         <Button className="offer__button" type="button">

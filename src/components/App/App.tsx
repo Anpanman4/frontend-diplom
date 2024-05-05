@@ -10,6 +10,7 @@ import Education from '../education/education';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import Main from '../main/main';
+import NotFound from '../not-found/not-found';
 
 const App = () => {
   const [products, setProducts] = useState<ProductType[] | undefined>(
@@ -73,6 +74,7 @@ const App = () => {
             }
           />
           <Route path="/education" element={<Education />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
