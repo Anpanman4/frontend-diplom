@@ -14,4 +14,9 @@
     color: var(--color-white);
     background-color: var(--color-dark-blue);
   }
+
+  &--small {
+    width: 29px;
+    height: 33px;
+  }
 }

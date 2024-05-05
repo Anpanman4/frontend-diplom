@@ -25,13 +25,15 @@ export type ProductIdProps = {
   basketProducts: ProductCountType[] | undefined;
   addToBasket: (product: ProductType) => void;
   reduceFromBasket: (product: ProductType, count: number) => void;
+  setBreadCrumbsProduct: (data: { label: string; link: string }) => void;
 };
 
 const ProductId: FC<ProductIdProps> = ({
   products,
   basketProducts,
   addToBasket,
-  reduceFromBasket
+  reduceFromBasket,
+  setBreadCrumbsProduct
 }) => {
   const location = useLocation();
   const navigate = useNavigate();
@@ -102,7 +104,14 @@ const ProductId: FC<ProductIdProps> = ({
           </ul>
           <Button
             className="product-id__button"
-            onClick={() => navigate('/basket')}
+            onClick={() => {
+              if (!productData) return;
+              setBreadCrumbsProduct({
+                label: productData?.title,
+                link: productData?._id
+              });
+              navigate('/basket');
+            }}
           >
             В корзину
           </Button>

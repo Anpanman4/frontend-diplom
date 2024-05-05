@@ -6,9 +6,12 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import basketIcon from '../../images/svg/basket.svg';
 import logoIcon from '../../images/svg/logo.svg';
 
-export type HeaderProps = { basketCount?: number };
+export type HeaderProps = {
+  basketCount?: number;
+  setBreadCrumbsProduct: (status: undefined) => void;
+};
 
-const Header: FC<HeaderProps> = ({ basketCount }) => {
+const Header: FC<HeaderProps> = ({ basketCount, setBreadCrumbsProduct }) => {
   const navigate = useNavigate();
 
   return (
@@ -55,13 +58,14 @@ const Header: FC<HeaderProps> = ({ basketCount }) => {
       </nav>
       <nav className="header__right-links">
         <NavLink
-          to="/offer"
+          to="/basket"
+          onClick={() => setBreadCrumbsProduct(undefined)}
           className={({ isActive }) =>
             `header__basket ${isActive ? 'header__basket--active' : ''}`
           }
         >
           <img src={basketIcon} alt="Корзина" />
-          {basketCount && (
+          {!!basketCount && (
             <div className="header__basket-text">
               {basketCount <= 9 ? basketCount : '9+'}
             </div>

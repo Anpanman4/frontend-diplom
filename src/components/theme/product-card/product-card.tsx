@@ -29,7 +29,13 @@ const ProductCard: FC<ProductCardProps> = ({
   const navigation = useNavigate();
 
   return (
-    <li className="product-card" onClick={() => navigation(`${id}`)}>
+    <li
+      className="product-card"
+      onClick={() => {
+        navigation(`${id}`);
+        window.scrollTo(0, 0);
+      }}
+    >
       <img
         className="product-card__img"
         src={`http://localhost:8000/${img}`}
