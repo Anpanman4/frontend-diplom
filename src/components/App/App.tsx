@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './App.scss';
 
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 
 import api from '../../http/api';
 import { ProductCountType, ProductType } from '../../http/types';
@@ -11,6 +11,8 @@ import Footer from '../footer/footer';
 import Header from '../header/header';
 import Main from '../main/main';
 import NotFound from '../not-found/not-found';
+import SignIn from '../sign/sign-in/sign-in';
+import SignUp from '../sign/sign-up/sign-up';
 
 const App = () => {
   const [products, setProducts] = useState<ProductType[] | undefined>(
@@ -19,6 +21,8 @@ const App = () => {
   const [basketProducts, setBasketProducts] = useState<
     ProductCountType[] | undefined
   >(undefined);
+
+  const location = useLocation();
 
   const addToBasket = (product: ProductType) => {
     const alreadyExistProduct = basketProducts?.find(
@@ -58,26 +62,35 @@ const App = () => {
 
   return (
     <>
-      <Header basketCount={basketCount} />
-      <main className="page">
+      {['/sign-in', '/sign-up'].includes(location.pathname) ? (
         <Routes>
-          <Route path="/" element={<Main />} />
-          <Route
-            path="/catalog"
-            element={
-              <Catalog
-                products={products}
-                basketProducts={basketProducts}
-                addToBasket={addToBasket}
-                reduceFromBasket={reduceFromBasket}
-              />
-            }
-          />
-          <Route path="/education" element={<Education />} />
-          <Route path="*" element={<NotFound />} />
+          <Route path="/sign-in" element={<SignIn />} />
+          <Route path="/sign-up" element={<SignUp />} />
         </Routes>
-      </main>
-      <Footer />
+      ) : (
+        <>
+          <Header basketCount={basketCount} />
+          <main className="page">
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route
+                path="/catalog"
+                element={
+                  <Catalog
+                    products={products}
+                    basketProducts={basketProducts}
+                    addToBasket={addToBasket}
+                    reduceFromBasket={reduceFromBasket}
+                  />
+                }
+              />
+              <Route path="/education" element={<Education />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+        </>
+      )}
     </>
   );
 };

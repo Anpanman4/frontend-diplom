@@ -1,4 +1,5 @@
 .hg-text {
+  color: var(--color-black);
   font-family: var(--font-family-default);
   font-size: 24px;
   font-weight: 400;
@@ -28,5 +29,9 @@
 
   &--5 {
     font-size: 14px;
+  }
+
+  &--gray {
+    color: var(--color-gray-2);
   }
 }

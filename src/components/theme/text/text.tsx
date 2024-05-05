@@ -17,12 +17,14 @@ type TextElement = HTMLSpanElement;
 type Level = 1 | 2 | 3 | 4 | 5;
 type Height = 'normal' | 'short';
 type Weight = 'regular' | 'medium';
+type Color = 'black' | 'gray';
 
 export type TextProps = Props<
   AsProps & {
     level?: Level;
     height?: Height;
     weight?: Weight;
+    color?: Color;
   },
   true,
   DetailedHTMLProps<HTMLAttributes<TextElement>, TextElement>
@@ -34,6 +36,7 @@ const getTextComponent = (level: Level): DefaultElement =>
 const defaultLevel: Level = 1;
 const defaultHeight: Height = 'normal';
 const defaultWeight: Weight = 'regular';
+const defaultColor: Color = 'black';
 
 export const Text: FC<TextProps> = memo(
   forwardRef<TextElement, TextProps>(
@@ -42,6 +45,7 @@ export const Text: FC<TextProps> = memo(
         level = defaultLevel,
         height = defaultHeight,
         weight = defaultWeight,
+        color = defaultColor,
         as: Component = getTextComponent(level),
         className,
         ...restProps
@@ -53,11 +57,12 @@ export const Text: FC<TextProps> = memo(
         {...restProps}
         {...Component.props}
         className={classNames(
-          'sf-title',
+          'hg-text',
           {
-            [`sf-title--${level}`]: level !== defaultLevel,
-            [`sf-title--${height}`]: height !== defaultHeight,
-            [`sf-title--${weight}`]: weight !== defaultWeight
+            [`hg-text--${level}`]: level !== defaultLevel,
+            [`hg-text--${height}`]: height !== defaultHeight,
+            [`hg-text--${weight}`]: weight !== defaultWeight,
+            [`hg-text--${color}`]: color !== defaultColor
           },
           className,
           Component.props.className

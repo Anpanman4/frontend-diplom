@@ -1,18 +1,20 @@
 .hg-button {
   width: 100%;
+  font-family: var(--font-family-default);
+  font-size: 20px;
+  color: var(--color-black);
   border: solid 1px var(--color-black);
   border-radius: 6px;
   padding: 12px 0;
   background-color: transparent;
-  color: var(--color-black);
 
-  &:hover {
+  &:not(.hg-button--disabled):hover {
     cursor: pointer;
     background-color: var(--color-light-blue);
   }
 
   &--disabled {
-    background-color: var(--color-gray-4);
-    color: var(--color-white);
+    color: var(--color-gray-3);
+    border-color: var(--color-gray-3);
   }
 }

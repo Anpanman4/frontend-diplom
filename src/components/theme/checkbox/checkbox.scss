@@ -1,0 +1,44 @@
+.hg-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-white);
+    border: 1px solid var(--color-black);
+    border-radius: 4px;
+    transition: all 0.1s ease-in-out;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    &:not(.hg-checkbox--checked):hover {
+      border-color: var(--color-gray-2);
+    }
+
+    &--checked {
+      background-color: var(--color-light-blue);
+      border: none;
+    }
+  }
+
+  &__check-icon {
+    display: none;
+    position: relative;
+    width: 13px;
+    height: 13px;
+
+    &--checked {
+      display: block;
+    }
+  }
+
+  &__input {
+    display: none;
+  }
+}
