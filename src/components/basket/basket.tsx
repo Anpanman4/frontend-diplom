@@ -52,7 +52,7 @@ const Basket: FC<BasketProps> = ({
       <BreadCrumbs items={items} />
       <div className="basket__container">
         <Title level={1}>Корзина</Title>
-        {basketProducts ? (
+        {basketProducts?.length ? (
           basketProducts.map((value) => (
             <div key={value._id} className="basket__product">
               <img
@@ -86,7 +86,7 @@ const Basket: FC<BasketProps> = ({
                     size="small"
                     onClick={() => addToBasket(value)}
                   />
-                  <Title className="basket__price-container" level={3}>
+                  <Title className="basket__product-price" level={3}>
                     {value.price || 600} ₽
                   </Title>
                 </div>
@@ -103,6 +103,7 @@ const Basket: FC<BasketProps> = ({
         <Button
           className="basket__button"
           onClick={() => navigation('/offers')}
+          disabled={!basketProducts?.length}
         >
           Оформить заказ
         </Button>

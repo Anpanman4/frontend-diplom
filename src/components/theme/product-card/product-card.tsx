@@ -65,7 +65,7 @@ const ProductCard: FC<ProductCardProps> = ({
             addToBasket();
           }}
         >
-          Добавить в корзину
+          В корзину
         </Button>
       )}
     </li>
