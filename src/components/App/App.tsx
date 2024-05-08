@@ -73,6 +73,10 @@ const App = () => {
     api.getProducts().then((data) => setProducts(data));
   }, []);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+
   return (
     <>
       {['/sign-in', '/sign-up'].includes(location.pathname) ? (

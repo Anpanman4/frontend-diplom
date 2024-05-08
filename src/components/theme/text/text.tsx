@@ -15,8 +15,8 @@ import { AsProps, DefaultElement, Props } from '../../../utils/props-types';
 type TextElement = HTMLSpanElement;
 
 type Level = 1 | 2 | 3 | 4 | 5;
-type Height = 'normal' | 'short';
-type Weight = 'regular' | 'medium';
+type Height = 'short' | 'normal' | 'large';
+type Weight = 'regular' | 'medium' | 'bold';
 type Color =
   | 'black'
   | 'gray-1'

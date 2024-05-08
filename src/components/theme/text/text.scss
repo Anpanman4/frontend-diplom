@@ -11,8 +11,16 @@
     font-weight: 600;
   }
 
+  &--bold {
+    font-weight: bold;
+  }
+
   &--short {
     line-height: 1;
+  }
+
+  &--large {
+    line-height: 1.3;
   }
 
   &--1 {

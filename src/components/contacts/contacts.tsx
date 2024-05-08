@@ -16,6 +16,7 @@ const Contacts: FC<ContactsProps> = () => {
     mobile: '',
     comment: ''
   });
+
   return (
     <section className="contacts">
       <BreadCrumbs
