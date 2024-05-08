@@ -32,6 +32,9 @@ const Catalog: FC<CatalogProps> = ({
   const currentContent = inputDebounced
     ? products?.filter((value) => value.title.includes(inputDebounced))
     : products;
+  const [name, setName] = useState('');
+  const [mobile, setMobile] = useState('');
+  const [comment, setComment] = useState('');
 
   return (
     <section className="catalog">
@@ -98,7 +101,31 @@ const Catalog: FC<CatalogProps> = ({
             );
           })}
       </ul>
-      <Offer />
+      <Offer
+        title="Сотрудничество"
+        about={[
+          'Присоединяйтесь к комьюнити HairGrad!',
+          'Оставьте свои контактные данные и мы предложим вам персональные акции для оптового заказа.'
+        ]}
+        inputs={[
+          {
+            value: name,
+            setValue: setName,
+            label: 'ФИО или Название организации'
+          },
+          {
+            value: mobile,
+            setValue: setMobile,
+            label: 'Номер телефона'
+          },
+          {
+            value: comment,
+            setValue: setComment,
+            label: 'Комментарии'
+          }
+        ]}
+        onClick={() => console.log({ name, mobile, comment })}
+      />
     </section>
   );
 };

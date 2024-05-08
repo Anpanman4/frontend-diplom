@@ -7,6 +7,7 @@ import api from '../../http/api';
 import { ProductCountType, ProductType } from '../../http/types';
 import Basket from '../basket/basket';
 import Catalog from '../catalog/catalog';
+import Contacts from '../contacts/contacts';
 import Education from '../education/education';
 import Footer from '../footer/footer';
 import Header from '../header/header';
@@ -122,6 +123,7 @@ const App = () => {
                 }
               />
               <Route path="/education" element={<Education />} />
+              <Route path="/contacts" element={<Contacts />} />
               <Route
                 path="/basket"
                 element={

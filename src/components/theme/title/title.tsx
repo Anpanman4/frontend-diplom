@@ -20,11 +20,13 @@ type TitleElementProps = DetailedHTMLProps<
 
 type Level = 1 | 2 | 3 | 4 | 5 | 6;
 type Height = 'normal' | 'short';
+type Color = 'black' | 'dark-blue';
 
 export type TitleProps = Props<
   AsProps & {
     level?: Level;
     height?: Height;
+    color?: Color;
   },
   true,
   TitleElementProps
@@ -43,6 +45,7 @@ const headingLevels: {
 
 const defaultLevel: Level = 3;
 const defaultHeight: Height = 'normal';
+const defaultColor: Color = 'black';
 
 export const Title: FC<TitleProps> = memo(
   forwardRef<TitleElement, TitleProps>(
@@ -50,6 +53,7 @@ export const Title: FC<TitleProps> = memo(
       {
         level = defaultLevel,
         height = defaultHeight,
+        color = defaultColor,
         as: Component = headingLevels[level],
         className,
         ...restProps
@@ -64,7 +68,8 @@ export const Title: FC<TitleProps> = memo(
           'hg-title',
           {
             [`hg-title--${level}`]: level !== defaultLevel,
-            [`hg-title--${height}`]: height !== defaultHeight
+            [`hg-title--${height}`]: height !== defaultHeight,
+            [`hg-title--${color}`]: color !== defaultColor
           },
           className,
           Component.props.className
