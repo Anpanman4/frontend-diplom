@@ -5,6 +5,10 @@ export type ProductType = {
   title: string;
   about: string;
   price: string;
+  smell: string[];
+  hairType: string[];
+  fixationDegree: number;
+  volume: number;
   image: string;
   isVisible: boolean;
 };

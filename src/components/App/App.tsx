@@ -87,7 +87,17 @@ const App = () => {
           />
           <main className="page">
             <Routes>
-              <Route path="/" element={<Main />} />
+              <Route
+                path="/"
+                element={
+                  <Main
+                    products={products}
+                    basketProducts={basketProducts}
+                    addToBasket={addToBasket}
+                    reduceFromBasket={reduceFromBasket}
+                  />
+                }
+              />
               <Route
                 path="/catalog"
                 element={

@@ -53,7 +53,7 @@ const ProductId: FC<ProductIdProps> = ({
         onClick={() => navigate('/catalog')}
       >
         <img src={BackArrowIcon} alt="" />
-        <Text level={5} color="gray">
+        <Text level={5} color="gray-1">
           Назад к каталогу
         </Text>
       </div>
@@ -65,11 +65,11 @@ const ProductId: FC<ProductIdProps> = ({
         />
         <div className="product-id__info-container">
           <Title level={1}>{productData?.title}</Title>
-          <Text className="product-id__about" level={4} color="gray">
+          <Text className="product-id__about" level={4} color="gray-1">
             {productData?.about}
           </Text>
-          <Text className="product-id__size" level={4} color="gray">
-            110 мл
+          <Text className="product-id__size" level={4} color="gray-1">
+            {productData?.volume} мл
           </Text>
           <Title
             className="product-id__price"
@@ -78,16 +78,14 @@ const ProductId: FC<ProductIdProps> = ({
           <ul className="product-id__items">
             <li className="product-id__item">
               Аромат:
-              <Text level={4} color="gray">
-                {' сандал, пралине, ваниль'}
+              <Text level={4} color="black">
+                {` ${productData?.smell.join(', ')}`}
               </Text>
             </li>
             <li className="product-id__item">
               Тип волос:
-              <Text level={4} color="gray">
-                {
-                  ' нормальные, тонкие, сухие, поврежденные, окрашенные, жесткие, вьющиеся, непослушные'
-                }
+              <Text level={4} color="black">
+                {` ${productData?.hairType.join(', ')}`}
               </Text>
             </li>
             <li className="product-id__item-degree">
@@ -96,7 +94,7 @@ const ProductId: FC<ProductIdProps> = ({
                 {['', '', '', '', ''].map((value, index) => (
                   <div
                     key={index}
-                    className={`product-id__degree ${3 > index ? 'product-id__degree--active' : ''}`}
+                    className={`product-id__degree ${(productData?.fixationDegree ?? 0) > index ? 'product-id__degree--active' : ''}`}
                   ></div>
                 ))}
               </div>

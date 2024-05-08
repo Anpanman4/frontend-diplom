@@ -17,7 +17,14 @@ type TextElement = HTMLSpanElement;
 type Level = 1 | 2 | 3 | 4 | 5;
 type Height = 'normal' | 'short';
 type Weight = 'regular' | 'medium';
-type Color = 'black' | 'gray';
+type Color =
+  | 'black'
+  | 'gray-1'
+  | 'gray-2'
+  | 'gray-3'
+  | 'gray-4'
+  | 'gray-5'
+  | 'dark-blue';
 
 export type TextProps = Props<
   AsProps & {

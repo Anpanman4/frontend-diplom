@@ -54,58 +54,69 @@ const Basket: FC<BasketProps> = ({
         <Title level={1}>Корзина</Title>
         {basketProducts?.length ? (
           basketProducts.map((value) => (
-            <div key={value._id} className="basket__product">
-              <img
-                className="basket__product-image"
-                src={`http://localhost:8000/${value.image}`}
-                alt={value.title}
-              />
-              <div className="basket__product-info">
-                <Title>{value.title}</Title>
-                <Text className="basket__product-text" level={3} color="gray">
-                  30 мл<div className="basket__product-circle"></div>
-                  {value.count} шт
-                </Text>
+            <>
+              <div key={value._id} className="basket__product">
                 <img
-                  className="basket__product--cross"
-                  src={CrossIcon}
-                  alt=""
-                  onClick={() => reduceFromBasket(value, 1)}
+                  className="basket__product-image"
+                  src={`http://localhost:8000/${value.image}`}
+                  alt={value.title}
                 />
-                <div className="basket__product-controls">
-                  <CountButton
-                    isMinus={true}
-                    size="small"
-                    onClick={() => reduceFromBasket(value, value.count)}
-                  />
-                  <Text level={3} color="gray">
-                    {value.count}
+                <div className="basket__product-info">
+                  <Title>{value.title}</Title>
+                  <Text
+                    className="basket__product-text"
+                    level={3}
+                    color="gray-1"
+                  >
+                    30 мл<div className="basket__product-circle"></div>
+                    {value.count} шт
                   </Text>
-                  <CountButton
-                    isMinus={false}
-                    size="small"
-                    onClick={() => addToBasket(value)}
+                  <img
+                    className="basket__product--cross"
+                    src={CrossIcon}
+                    alt=""
+                    onClick={() => reduceFromBasket(value, 1)}
                   />
-                  <Title className="basket__product-price" level={3}>
-                    {value.price || 600} ₽
-                  </Title>
+                  <div className="basket__product-controls">
+                    <CountButton
+                      isMinus={true}
+                      size="small"
+                      onClick={() => reduceFromBasket(value, value.count)}
+                    />
+                    <Text level={3} color="black">
+                      {value.count}
+                    </Text>
+                    <CountButton
+                      isMinus={false}
+                      size="small"
+                      onClick={() => addToBasket(value)}
+                    />
+                    <Title className="basket__product-price" level={3}>
+                      {value.price || 600} ₽
+                    </Title>
+                  </div>
                 </div>
               </div>
-            </div>
+              <div className="basket__price-container">
+                <Title level={2}>Итого</Title>
+                <Title level={2}>{price || 0} ₽</Title>
+              </div>
+            </>
           ))
         ) : (
-          <Title>Нету товаров в корзине</Title>
+          <Text level={3} color="gray-1">
+            В корзине ничего нет;(
+          </Text>
         )}
-        <div className="basket__price-container">
-          <Title level={2}>Итого</Title>
-          <Title level={2}>{price || 0} ₽</Title>
-        </div>
         <Button
           className="basket__button"
-          onClick={() => navigation('/offers')}
-          disabled={!basketProducts?.length}
+          onClick={() =>
+            basketProducts?.length
+              ? navigation('/offers')
+              : navigation('/catalog')
+          }
         >
-          Оформить заказ
+          {basketProducts?.length ? 'Оформить заказ' : 'В каталог'}
         </Button>
       </div>
       <div className="basket__more">

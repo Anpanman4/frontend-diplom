@@ -53,7 +53,7 @@ export const CheckBox = component<CheckBoxProps, HTMLDivElement>(
             {...restProps}
           />
         </div>
-        <Text level={4} color="gray">
+        <Text level={4} color="gray-2">
           {label}
         </Text>
       </div>

@@ -31,7 +31,27 @@
     font-size: 14px;
   }
 
-  &--gray {
+  &--gray-1 {
+    color: var(--color-gray-1);
+  }
+
+  &--gray-2 {
     color: var(--color-gray-2);
+  }
+
+  &--gray-3 {
+    color: var(--color-gray-3);
+  }
+
+  &--gray-4 {
+    color: var(--color-gray-4);
+  }
+
+  &--gray-5 {
+    color: var(--color-gray-5);
+  }
+
+  &--dark-blue {
+    color: var(--color-dark-blue);
   }
 }
