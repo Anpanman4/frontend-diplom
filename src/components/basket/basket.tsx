@@ -97,16 +97,18 @@ const Basket: FC<BasketProps> = ({
                   </div>
                 </div>
               </div>
-              <div className="basket__price-container">
-                <Title level={2}>Итого</Title>
-                <Title level={2}>{price || 0} ₽</Title>
-              </div>
             </>
           ))
         ) : (
           <Text level={3} color="gray-1">
             В корзине ничего нет;(
           </Text>
+        )}
+        {basketProducts?.length && (
+          <div className="basket__price-container">
+            <Title level={2}>Итого</Title>
+            <Title level={2}>{price || 0} ₽</Title>
+          </div>
         )}
         <Button
           className="basket__button"

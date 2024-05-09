@@ -13,6 +13,7 @@ import Footer from '../footer/footer';
 import Header from '../header/header';
 import Main from '../main/main';
 import NotFound from '../not-found/not-found';
+import Offers from '../offers/offers';
 import ProductId from '../product-id/product-id';
 import SignIn from '../sign/sign-in/sign-in';
 import SignUp from '../sign/sign-up/sign-up';
@@ -137,6 +138,15 @@ const App = () => {
                     basketProducts={basketProducts}
                     addToBasket={addToBasket}
                     reduceFromBasket={reduceFromBasket}
+                  />
+                }
+              />
+              <Route
+                path="/offers"
+                element={
+                  <Offers
+                    breadCrumbsProduct={breadCrumbsProduct}
+                    basketProducts={basketProducts}
                   />
                 }
               />
