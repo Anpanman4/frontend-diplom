@@ -14,6 +14,8 @@ import Header from '../header/header';
 import Main from '../main/main';
 import NotFound from '../not-found/not-found';
 import Offers from '../offers/offers';
+import OffersSuccess from '../offers-success/offers-success';
+import Politic from '../politic/politic';
 import ProductId from '../product-id/product-id';
 import SignIn from '../sign/sign-in/sign-in';
 import SignUp from '../sign/sign-up/sign-up';
@@ -150,6 +152,8 @@ const App = () => {
                   />
                 }
               />
+              <Route path="/offers-success" element={<OffersSuccess />} />
+              <Route path="/politic" element={<Politic />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

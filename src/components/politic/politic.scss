@@ -1,0 +1,13 @@
+.politic {
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 24px auto 128px;
+  padding: 0 80px;
+  box-sizing: border-box;
+
+  &__title {
+    margin: 20px 0 56px;
+  }
+}

@@ -147,7 +147,10 @@ const Offers: FC<OffersType> = ({ breadCrumbsProduct, basketProducts }) => {
           </div>
         </div>
         <Button
-          onClick={() => console.log(inputsValues)}
+          onClick={() => {
+            console.log(inputsValues);
+            navigate('/offers-success');
+          }}
           disabled={!inputsValues.name || !inputsValues.mobile}
         >
           Заказать

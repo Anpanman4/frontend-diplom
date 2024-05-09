@@ -1,0 +1,26 @@
+.offers-success {
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 80px;
+  margin: 200px auto;
+  box-sizing: border-box;
+
+  &__text {
+    margin-top: 16px;
+    text-align: center;
+  }
+
+  &__link {
+    text-decoration: none;
+    border-bottom: 1px solid var(--color-dark-blue);
+    color: var(--color-dark-blue);
+  }
+
+  &__button {
+    max-width: 400px;
+    margin-top: 72px;
+  }
+}
