@@ -16,6 +16,11 @@ const Contacts: FC<ContactsProps> = () => {
     mobile: '',
     comment: ''
   });
+  const [inputsError, setInputsError] = useState({
+    name: '',
+    mobile: '',
+    comment: ''
+  });
 
   return (
     <section className="contacts">
@@ -61,14 +66,23 @@ const Contacts: FC<ContactsProps> = () => {
         inputs={[
           {
             value: inputsData.name,
-            setValue: (value) => setInputsData({ ...inputsData, name: value }),
-            label: 'ФИО или Название организации'
+            setValue: (value) => {
+              if (inputsError.name)
+                setInputsError({ ...inputsError, name: '' });
+              setInputsData({ ...inputsData, name: value });
+            },
+            label: 'ФИО или Название организации',
+            errorMessage: inputsError.name
           },
           {
             value: inputsData.mobile,
-            setValue: (value) =>
-              setInputsData({ ...inputsData, mobile: value }),
-            label: 'Номер телефона'
+            setValue: (value) => {
+              if (inputsError.mobile)
+                setInputsError({ ...inputsError, mobile: '' });
+              setInputsData({ ...inputsData, mobile: value });
+            },
+            label: 'Номер телефона',
+            errorMessage: inputsError.mobile
           },
           {
             value: inputsData.comment,
@@ -77,7 +91,37 @@ const Contacts: FC<ContactsProps> = () => {
             label: 'Комментарии'
           }
         ]}
-        onClick={() => console.log(inputsData)}
+        onClick={async (e) => {
+          if (!inputsData.name)
+            setInputsError({ ...inputsError, name: 'Заполните имя' });
+          if (!inputsData.mobile)
+            setInputsError({
+              ...inputsError,
+              mobile: 'Заполните номер телефона'
+            });
+          if (!inputsData.name || !inputsData.mobile) return '';
+          e.preventDefault();
+          const data = new FormData();
+          data.append('name', inputsData.name);
+          data.append('mobile', inputsData.mobile);
+          data.append('comment', inputsData.comment);
+          try {
+            await fetch(
+              'https://script.google.com/macros/s/AKfycbydoep_DiyKJh38Z064uXTuC47wFw6S1KIdK1ndM6Hvq30fTGyl0uQ4nM5EEngkzbv3/exec',
+              {
+                method: 'POST',
+                body: data
+              }
+            );
+            setInputsData({
+              name: '',
+              mobile: '',
+              comment: ''
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        }}
       />
     </section>
   );

@@ -16,7 +16,7 @@ const OffersSuccess: FC<OffersSuccessType> = () => {
     <section className="offers-success">
       <Title level={1}>Спасибо за заказ!</Title>
       <Text className="offers-success__text" level={3}>
-        Ваш заказ ТУТ НАДО ЦИФРЫ успешно оформлен!
+        Ваш заказ №1232 успешно оформлен!
         <br />
         Информацию о состоянии заказа можно просматривать в{' '}
         <Link className="offers-success__link" to="/personal">

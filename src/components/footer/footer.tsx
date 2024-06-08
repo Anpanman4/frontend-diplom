@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './footer.scss';
 
-import { NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import logoIcon from '../../images/svg/logo.svg';
 import tgIcon from '../../images/svg/tg.svg';
@@ -22,38 +22,18 @@ const Footer: FC<FooterProps> = () => {
           onClick={() => navigate('/')}
         />
         <nav className="footer__links">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              `footer__link ${isActive ? 'footer__link--active' : ''}`
-            }
-          >
+          <Link to="/" className="footer__link">
             Главная
-          </NavLink>
-          <NavLink
-            to="/catalog"
-            className={({ isActive }) =>
-              `footer__link ${isActive ? 'footer__link--active' : ''}`
-            }
-          >
+          </Link>
+          <Link to="/catalog" className="footer__link">
             Косметика
-          </NavLink>
-          <NavLink
-            to="/education"
-            className={({ isActive }) =>
-              `footer__link ${isActive ? 'footer__link--active' : ''}`
-            }
-          >
+          </Link>
+          <Link to="/education" className="footer__link">
             Обучение
-          </NavLink>
-          <NavLink
-            to="/contacts"
-            className={({ isActive }) =>
-              `footer__link ${isActive ? 'footer__link--active' : ''}`
-            }
-          >
+          </Link>
+          <Link to="/contacts" className="footer__link">
             Контакты
-          </NavLink>
+          </Link>
         </nav>
         <address className="footer__contacts">
           <Title level={5}>+7 (495)-374-43-49</Title>

@@ -23,6 +23,9 @@
 
   &__price {
     margin-top: 8px !important;
+    display: flex;
+    align-items: center;
+    gap: 16px;
   }
 
   &__button {

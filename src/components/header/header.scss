@@ -39,23 +39,38 @@
   }
 
   &__basket {
+    width: 34px;
+    height: 34px;
+    display: flex;
+    align-items: center;
     position: relative;
+    border: 1px solid var(--color-black);
+    border-radius: 50%;
+
+    img {
+      position: absolute;
+      top: 8px;
+      left: 6px;
+    }
+
     &--active {
+      background-color: var(--color-light-blue);
     }
   }
 
   &__basket-text {
-    width: 12.5px;
-    height: 12.5px;
+    width: 16px;
+    height: 16px;
     position: absolute;
-    bottom: 0;
-    right: 0;
-    border: 1px solid var(--color-black);
+    bottom: -3px;
+    right: -3px;
     border-radius: 50%;
-    background-color: var(--color-white);
+    background-color: var(--color-light-blue);
     z-index: 1;
-    text-align: center;
     font-family: var(--font-family-default);
     font-size: 11px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }

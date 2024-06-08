@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { Option } from './option/option';
 import { ProductCountType, ProductType } from '../../http/types';
+import ColorsIcon from '../../images/svg/colors.svg';
 import { Button } from '../theme/button/button';
 import ProductCard from '../theme/product-card/product-card';
 import { Text } from '../theme/text/text';
@@ -40,7 +41,7 @@ const Main: FC<MainProps> = ({
         <div className="main__up-container">
           <Title level={1}>Популярные товары</Title>
           <Link to="/catalog" className="main__link">
-            В каталог
+            В каталог ↗
           </Link>
         </div>
         <div className="main__products">
@@ -56,6 +57,7 @@ const Main: FC<MainProps> = ({
                 id={product._id}
                 title={product.title}
                 price={product.price ? product.price : '600'}
+                volume={product.volume}
                 img={product.image}
                 count={currentCount?.count}
                 addToBasket={() => addToBasket(product)}
@@ -69,6 +71,7 @@ const Main: FC<MainProps> = ({
       </section>
       <section className="main__system">
         <div className="main__system-container">
+          <img className="main__colors" src={ColorsIcon} alt="" />
           <Title className="main__system-title" level={1}>
             Система HairGrad
           </Title>
@@ -117,7 +120,7 @@ const Main: FC<MainProps> = ({
                   className="main__links-button"
                   onClick={() => navigate('/catalog')}
                 >
-                  В каталог
+                  В каталог ↗
                 </Button>
               </div>
             </div>
@@ -131,7 +134,7 @@ const Main: FC<MainProps> = ({
                   className="main__links-button"
                   onClick={() => navigate('/catalog')}
                 >
-                  К обучению
+                  К обучению ↗
                 </Button>
               </div>
             </div>

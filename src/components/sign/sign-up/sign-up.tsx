@@ -13,16 +13,22 @@ const SignUp = () => {
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
   const [firstNameInput, setFirstNameInput] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+  const [firstNameError, setFirstNameError] = useState('');
   const [isChecked, setIsChecked] = useState(false);
 
   return (
     <Sign
       title="Регистрация"
       buttonTitle="Зарегистрироваться"
-      isButtonDisabled={
-        !emailInput || !passwordInput || !firstNameInput || !isChecked
-      }
-      onButtonClick={() =>
+      isButtonDisabled={false}
+      onButtonClick={() => {
+        console.log(emailInput, firstNameError);
+        if (!emailInput) setEmailError('Введите почту');
+        if (!passwordInput) setPasswordError('Введите пароль');
+        if (!firstNameInput) setFirstNameError('Введите имя');
+        if (!emailInput || !passwordInput || !firstNameInput) return;
         api
           .registration({
             email: emailInput,
@@ -30,8 +36,14 @@ const SignUp = () => {
             firstName: firstNameInput
           })
           .then((data) => data.status === 200 && navigation('/'))
-          .catch((err) => console.log(err.response.data.message))
-      }
+          .catch((err) => {
+            if (
+              err.response.data.validation.body.message ===
+              '"email" must be a valid email'
+            )
+              return setEmailError('Введена неправильная почта');
+          });
+      }}
       footerInfo={{
         question: 'Уже есть аккаунт?',
         link: '/sign-in',
@@ -40,21 +52,34 @@ const SignUp = () => {
     >
       <Input
         value={emailInput}
-        onChange={setEmailInput}
+        onChange={(string) => {
+          if (emailError) setEmailError('');
+          setEmailInput(string);
+        }}
         label="Электронная почта"
         maxWidth="none"
+        errorMessage={emailError}
       />
       <Input
         value={passwordInput}
-        onChange={setPasswordInput}
+        onChange={(string) => {
+          if (passwordError) setPasswordError('');
+          setPasswordInput(string);
+        }}
+        type="password"
         label="Пароль"
         maxWidth="none"
+        errorMessage={passwordError}
       />
       <Input
         value={firstNameInput}
-        onChange={setFirstNameInput}
+        onChange={(string) => {
+          if (firstNameError) setFirstNameError('');
+          setFirstNameInput(string);
+        }}
         label="Имя"
         maxWidth="none"
+        errorMessage={firstNameError}
       />
       <CheckBox
         checked={isChecked}

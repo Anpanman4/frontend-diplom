@@ -30,11 +30,18 @@ const Catalog: FC<CatalogProps> = ({
   const [inputData, setInputData] = useState('');
   const inputDebounced = useDebounce(inputData, 500);
   const currentContent = inputDebounced
-    ? products?.filter((value) => value.title.includes(inputDebounced))
+    ? products?.filter((value) =>
+        value.title.toLowerCase().includes(inputDebounced.toLowerCase())
+      )
     : products;
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');
   const [comment, setComment] = useState('');
+  const [inputsError, setInputsError] = useState({
+    name: '',
+    mobile: '',
+    comment: ''
+  });
 
   return (
     <section className="catalog">
@@ -91,6 +98,7 @@ const Catalog: FC<CatalogProps> = ({
                 id={product._id}
                 title={product.title}
                 price={product.price ? product.price : '600'}
+                volume={product.volume}
                 img={product.image}
                 count={currentCount?.count}
                 addToBasket={() => addToBasket(product)}
@@ -110,13 +118,23 @@ const Catalog: FC<CatalogProps> = ({
         inputs={[
           {
             value: name,
-            setValue: setName,
-            label: 'ФИО или Название организации'
+            setValue: (value) => {
+              if (inputsError.name)
+                setInputsError({ ...inputsError, name: '' });
+              setName(value);
+            },
+            label: 'ФИО или Название организации',
+            errorMessage: inputsError.name
           },
           {
             value: mobile,
-            setValue: setMobile,
-            label: 'Номер телефона'
+            setValue: (value) => {
+              if (inputsError.mobile)
+                setInputsError({ ...inputsError, mobile: '' });
+              setMobile(value);
+            },
+            label: 'Номер телефона',
+            errorMessage: inputsError.mobile
           },
           {
             value: comment,
@@ -124,7 +142,34 @@ const Catalog: FC<CatalogProps> = ({
             label: 'Комментарии'
           }
         ]}
-        onClick={() => console.log({ name, mobile, comment })}
+        onClick={async (e) => {
+          if (!name) setInputsError({ ...inputsError, name: 'Заполните имя' });
+          if (!mobile)
+            setInputsError({
+              ...inputsError,
+              mobile: 'Заполните номер телефона'
+            });
+          if (!name || !mobile) return '';
+          e.preventDefault();
+          const data = new FormData();
+          data.append('name', name);
+          data.append('mobile', mobile);
+          data.append('comment', comment);
+          try {
+            await fetch(
+              'https://script.google.com/macros/s/AKfycbydoep_DiyKJh38Z064uXTuC47wFw6S1KIdK1ndM6Hvq30fTGyl0uQ4nM5EEngkzbv3/exec',
+              {
+                method: 'POST',
+                body: data
+              }
+            );
+            setName('');
+            setMobile('');
+            setComment('');
+          } catch (error) {
+            console.log(error);
+          }
+        }}
       />
     </section>
   );

@@ -16,7 +16,9 @@ export const BreadCrumbs = memo<BreadCrumbsProps>(({ items }) => {
             <Link className="breadcrumbs__link" to={item.link}>
               {item.label}
             </Link>
-            {items?.length - 1 > index && <img src={ArrowIcon} alt="" />}
+            {items?.length - 1 > index && (
+              <img className="breadcrumbs__arrow" src={ArrowIcon} alt="" />
+            )}
           </Fragment>
         );
       })}

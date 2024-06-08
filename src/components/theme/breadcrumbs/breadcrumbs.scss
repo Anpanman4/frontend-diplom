@@ -13,4 +13,8 @@
       color: var(--color-black);
     }
   }
+
+  &__arrow {
+    transform: rotate(180deg);
+  }
 }

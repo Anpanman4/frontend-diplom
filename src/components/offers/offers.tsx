@@ -21,7 +21,8 @@ const Offers: FC<OffersType> = ({ breadCrumbsProduct, basketProducts }) => {
   const [inputsValues, setInputsValues] = useState({
     name: '',
     mobile: '',
-    email: ''
+    email: '',
+    address: ''
   });
 
   const items = useMemo(
@@ -90,6 +91,14 @@ const Offers: FC<OffersType> = ({ breadCrumbsProduct, basketProducts }) => {
               setInputsValues({ ...inputsValues, email: value })
             }
             label="Адрес эл.почты"
+            maxWidth="620px"
+          />
+          <Input
+            value={inputsValues.address}
+            onChange={(value) =>
+              setInputsValues({ ...inputsValues, address: value })
+            }
+            label="Адрес доставки"
             maxWidth="620px"
           />
         </div>

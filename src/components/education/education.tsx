@@ -18,13 +18,18 @@ const Education: FC<EducationProps> = () => {
     mobile: '',
     comment: ''
   });
+  const [inputsError, setInputsError] = useState({
+    name: '',
+    mobile: '',
+    comment: ''
+  });
 
   return (
     <section className="education">
       <BreadCrumbs
         items={[
           { label: 'Главная', link: '/' },
-          { label: 'Главная', link: '/education' }
+          { label: 'Обучение', link: '/education' }
         ]}
       />
       <div className="education__system">
@@ -61,7 +66,7 @@ const Education: FC<EducationProps> = () => {
               качеств в мастере.
             </Text>
             <Title className="education__botton-title" level={3}>
-              Направление
+              Изучаем
             </Title>
             <Text
               className="education__description-info education__description-info--bottom"
@@ -102,7 +107,7 @@ const Education: FC<EducationProps> = () => {
               выстраивая из структуры и смыслов композицию.
             </Text>
             <Title className="education__botton-title" level={3}>
-              Направление
+              В процессе обучения
             </Title>
             <Text
               className="education__description-info education__description-info--bottom"
@@ -128,11 +133,8 @@ const Education: FC<EducationProps> = () => {
         </div>
         <div className="education__intro-container">
           <Text level={3} height="large">
-            Укладка волос — это ключевой момент в завершении образа и услуги в
-            салоне, где соединяется
-          </Text>
-          <Text level={4} weight="bold" height="large">
-            {'САЛОН > МАСТЕР > КЛИЕНТ = ЭКСПЕРТНОСТЬ'}
+            Укладка волос — это ключевой момент в завершении образа и услуги,
+            где соединяется клиент, мастер и салон.
           </Text>
         </div>
       </div>
@@ -145,14 +147,23 @@ const Education: FC<EducationProps> = () => {
         inputs={[
           {
             value: inputsData.name,
-            setValue: (value) => setInputsData({ ...inputsData, name: value }),
-            label: 'ФИО или Название организации'
+            setValue: (value) => {
+              if (inputsError.name)
+                setInputsError({ ...inputsError, name: '' });
+              setInputsData({ ...inputsData, name: value });
+            },
+            label: 'ФИО или Название организации',
+            errorMessage: inputsError.name
           },
           {
             value: inputsData.mobile,
-            setValue: (value) =>
-              setInputsData({ ...inputsData, mobile: value }),
-            label: 'Номер телефона'
+            setValue: (value) => {
+              if (inputsError.mobile)
+                setInputsError({ ...inputsError, mobile: '' });
+              setInputsData({ ...inputsData, mobile: value });
+            },
+            label: 'Номер телефона',
+            errorMessage: inputsError.mobile
           },
           {
             value: inputsData.comment,
@@ -161,7 +172,35 @@ const Education: FC<EducationProps> = () => {
             label: 'Комментарии'
           }
         ]}
-        onClick={() => console.log(inputsData)}
+        onClick={async (e) => {
+          if (!inputsData.name || !inputsData.mobile)
+            return setInputsError({
+              ...inputsError,
+              name: inputsData.name ? '' : 'Заполните имя',
+              mobile: inputsData.mobile ? '' : 'Заполните номер телефона'
+            });
+          e.preventDefault();
+          const data = new FormData();
+          data.append('name', inputsData.name);
+          data.append('mobile', inputsData.mobile);
+          data.append('comment', inputsData.comment);
+          try {
+            await fetch(
+              'https://script.google.com/macros/s/AKfycbyQXvF3QoyQGbtl3fH_gFFa0i_s-z29PRCy2ARJIP24-1SNjahMsuD69CQBY86FBSHBBg/exec',
+              {
+                method: 'POST',
+                body: data
+              }
+            );
+            setInputsData({
+              name: '',
+              mobile: '',
+              comment: ''
+            });
+          } catch (error) {
+            console.log(error);
+          }
+        }}
       />
     </section>
   );

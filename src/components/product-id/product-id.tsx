@@ -248,6 +248,7 @@ const ProductId: FC<ProductIdProps> = ({
                 id={product._id}
                 title={product.title}
                 price={product.price ? product.price : '600'}
+                volume={product.volume}
                 img={product.image}
                 count={currentCount?.count}
                 addToBasket={() => addToBasket(product)}

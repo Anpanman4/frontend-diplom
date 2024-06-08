@@ -13,8 +13,9 @@ export type OfferType = {
     value: string;
     setValue: (value: string) => void;
     label: string;
+    errorMessage?: string;
   }[];
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const Offer: FC<OfferType> = ({ title, about, inputs, onClick }) => {
@@ -36,6 +37,7 @@ const Offer: FC<OfferType> = ({ title, about, inputs, onClick }) => {
             onChange={inputData.setValue}
             label={inputData.label}
             maxWidth="none"
+            errorMessage={inputData.errorMessage}
           />
         ))}
         <Button className="offer__button" type="button" onClick={onClick}>

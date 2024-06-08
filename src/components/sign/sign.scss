@@ -45,9 +45,10 @@
   }
 
   &__footer-link {
-    color: var(--color-black);
+    color: var(--color-dark-blue);
     font-family: var(--font-family-default);
     font-size: 16px;
     text-decoration: none;
+    border-bottom: 1px solid var(--color-dark-blue);
   }
 }

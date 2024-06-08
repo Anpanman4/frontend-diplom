@@ -11,6 +11,7 @@ export type ProductCardProps = {
   id: string;
   title: string;
   price: string;
+  volume: number;
   img: string;
   count?: number;
   addToBasket: () => void;
@@ -21,6 +22,7 @@ const ProductCard: FC<ProductCardProps> = ({
   id,
   title,
   price,
+  volume,
   img,
   count,
   addToBasket,
@@ -41,6 +43,9 @@ const ProductCard: FC<ProductCardProps> = ({
       </Text>
       <Text className="product-card__price" level={3}>
         {price}₽
+        <Text level={4} color="gray-2">
+          {volume}мл
+        </Text>
       </Text>
       {count ? (
         <div
