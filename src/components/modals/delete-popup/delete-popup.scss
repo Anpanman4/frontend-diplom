@@ -1,0 +1,20 @@
+.hg-delete-popup {
+  max-width: 730px;
+  width: 100%;
+
+  &__text {
+    margin-top: 8px;
+  }
+
+  &__controls {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 34px;
+    gap: 20px;
+
+    button {
+      font-size: 16px;
+    }
+  }
+}

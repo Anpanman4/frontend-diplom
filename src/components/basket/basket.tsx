@@ -104,7 +104,7 @@ const Basket: FC<BasketProps> = ({
             В корзине ничего нет;(
           </Text>
         )}
-        {basketProducts?.length && (
+        {!!basketProducts?.length && (
           <div className="basket__price-container">
             <Title level={2}>Итого</Title>
             <Title level={2}>{price || 0} ₽</Title>

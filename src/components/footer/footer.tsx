@@ -34,10 +34,17 @@ const Footer: FC<FooterProps> = () => {
           <Link to="/contacts" className="footer__link">
             Контакты
           </Link>
+          <Link to="/politic" className="footer__link">
+            Политика конфиденциальности
+          </Link>
         </nav>
         <address className="footer__contacts">
-          <Title level={5}>+7 (495)-374-43-49</Title>
-          <Title level={5}>hairgrad@mail.ru</Title>
+          <Title level={5} color="gray-1">
+            +7 (495)-374-43-49
+          </Title>
+          <Title level={5} color="gray-1">
+            hairgrad@mail.ru
+          </Title>
         </address>
         <nav className="footer__socials">
           <a className="footer__social" href="#">

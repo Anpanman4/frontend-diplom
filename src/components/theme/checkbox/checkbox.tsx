@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import './checkbox.scss';
 
 import classNames from 'classnames';
@@ -12,7 +12,7 @@ export type CheckBoxProps = Props<
   {
     checked?: boolean;
     onChange?: () => void;
-    label?: string;
+    label?: string | ReactNode;
     className?: string;
   },
   false,

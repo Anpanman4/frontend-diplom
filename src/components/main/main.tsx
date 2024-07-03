@@ -45,28 +45,29 @@ const Main: FC<MainProps> = ({
           </Link>
         </div>
         <div className="main__products">
-          {products?.slice(0, 3).map((product) => {
-            const currentCount = basketProducts
-              ? basketProducts.find(
-                  (basketProduct) => basketProduct._id === product._id
-                )
-              : undefined;
-            return (
-              <ProductCard
-                key={product._id}
-                id={product._id}
-                title={product.title}
-                price={product.price ? product.price : '600'}
-                volume={product.volume}
-                img={product.image}
-                count={currentCount?.count}
-                addToBasket={() => addToBasket(product)}
-                reduceFromBasket={() =>
-                  reduceFromBasket(product, currentCount?.count ?? 0)
-                }
-              />
-            );
-          })}
+          {products &&
+            products.slice(0, 3).map((product) => {
+              const currentCount = basketProducts
+                ? basketProducts.find(
+                    (basketProduct) => basketProduct._id === product._id
+                  )
+                : undefined;
+              return (
+                <ProductCard
+                  key={product._id}
+                  id={product._id}
+                  title={product.title}
+                  price={product.price ? product.price : '600'}
+                  volume={product.volume}
+                  img={product.image}
+                  count={currentCount?.count}
+                  addToBasket={() => addToBasket(product)}
+                  reduceFromBasket={() =>
+                    reduceFromBasket(product, currentCount?.count ?? 0)
+                  }
+                />
+              );
+            })}
         </div>
       </section>
       <section className="main__system">

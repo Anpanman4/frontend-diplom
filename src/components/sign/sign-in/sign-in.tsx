@@ -6,7 +6,11 @@ import api from '../../../http/api';
 import Input from '../../theme/input/input';
 import Sign from '../sign';
 
-const SignIn = () => {
+type SignInProps = {
+  setLoggedIn: (bool: boolean) => void;
+};
+
+const SignIn = ({ setLoggedIn }: SignInProps) => {
   const navigation = useNavigate();
 
   const [emailInput, setEmailInput] = useState('');
@@ -28,13 +32,24 @@ const SignIn = () => {
             email: emailInput,
             password: passwordInput
           })
-          .then((data) => data.status === 200 && navigation('/'))
+          .then((data) => {
+            data.status === 200 && navigation('/');
+            data && setLoggedIn(true);
+          })
           .catch((err) => {
+            if (err.response.data.message === 'Пользователь не найден') {
+              return setEmailError('Пользователь с такой почтой не найден');
+            }
+            if (err.response.data.message === 'Введен неправильный пароль') {
+              return setPasswordError('Введен неправильный пароль');
+            }
             if (
+              err.response.data.validation &&
               err.response.data.validation.body.message ===
-              '"email" must be a valid email'
-            )
+                '"email" must be a valid email'
+            ) {
               return setEmailError('Введена неправильная почта');
+            }
           });
       }}
       footerInfo={{

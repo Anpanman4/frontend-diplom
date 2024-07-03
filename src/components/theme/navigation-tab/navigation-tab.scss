@@ -1,0 +1,25 @@
+.navigation-tab {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__controls {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+
+  &__control {
+    transition: all 0.1s ease;
+    &--active {
+      color: var(--color-black);
+      text-decoration: underline;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: var(--color-black);
+    }
+  }
+}

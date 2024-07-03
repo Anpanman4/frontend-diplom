@@ -5,7 +5,9 @@ import { Link } from 'react-router-dom';
 
 import ArrowIcon from '../../../images/svg/arrow-left.svg';
 
-export type BreadCrumbsProps = { items?: { label: string; link: string }[] };
+export type BreadCrumbsProps = {
+  items?: { label: string; link: string; onClick?: () => void }[];
+};
 
 export const BreadCrumbs = memo<BreadCrumbsProps>(({ items }) => {
   return (
@@ -13,7 +15,11 @@ export const BreadCrumbs = memo<BreadCrumbsProps>(({ items }) => {
       {items?.map((item, index) => {
         return (
           <Fragment key={index}>
-            <Link className="breadcrumbs__link" to={item.link}>
+            <Link
+              className="breadcrumbs__link"
+              to={item.link}
+              onClick={() => item.onClick && item.onClick()}
+            >
               {item.label}
             </Link>
             {items?.length - 1 > index && (

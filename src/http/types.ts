@@ -16,3 +16,11 @@ export type ProductType = {
 export type ProductCountType = ProductType & {
   count: number;
 };
+
+export type UserType = {
+  _id: string;
+  email: string;
+  firstName: string;
+  roles: string[];
+  createdAt: string;
+};

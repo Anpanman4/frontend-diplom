@@ -1,0 +1,35 @@
+.hg-table {
+  margin-top: 48px;
+  border-spacing: 0;
+  border-bottom: 1px solid var(--color-gray-3);
+
+  &__row {
+    display: flex;
+    box-sizing: border-box;
+  }
+
+  &__cell {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 16px;
+    border-top: 1px solid var(--color-gray-3);
+    border-left: 1px solid var(--color-gray-3);
+    border-width: 0.5px;
+    box-sizing: border-box;
+    flex: 1 1 100%;
+    justify-content: center;
+    align-items: center;
+
+    &:last-of-type {
+      border-right: 1px solid var(--color-gray-3);
+    }
+
+    &--left {
+      align-items: flex-start;
+
+      span {
+        width: fit-content;
+      }
+    }
+  }
+}

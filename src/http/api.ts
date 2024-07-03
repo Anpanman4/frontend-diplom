@@ -15,6 +15,27 @@ class Api {
     this.headers = { ...this.headers, Authorization: `Bearer ${token}` };
   };
 
+  public getMe = async () => {
+    return await axios
+      .get(`${this.url}/users/me`, { headers: this.headers })
+      .then((data) => data.data)
+      .catch((err) => {
+        if (err.response.status === 401)
+          localStorage.setItem('hairgrad-JWT', '');
+        return err;
+      });
+  };
+
+  public updateUserInfo = async (body: {
+    firstName: string;
+    email: string;
+  }) => {
+    return await axios
+      .patch(`${this.url}/users/me`, body, { headers: this.headers })
+      .then((data) => data.data)
+      .catch((err) => console.log(err));
+  };
+
   public getProducts = async () => {
     return await axios
       .get(`${this.url}/products`)
@@ -37,7 +58,7 @@ class Api {
 
   public login = async (user: { email: string; password: string }) => {
     return await axios.post(`${this.url}/login`, user).then((data) => {
-      localStorage.setItem('JWT', data.data.token);
+      localStorage.setItem('hairgrad-JWT', data.data.token);
       this.setHeaders(data.data.token);
       return data;
     });
@@ -48,7 +69,7 @@ const api = new Api({
   url: 'http://localhost:8000/api',
   headers: {
     'Content-Type': 'application/json',
-    Authorization: `Bearer ${localStorage.getItem('JWT')}`
+    Authorization: `Bearer ${localStorage.getItem('hairgrad-JWT')}`
   }
 });
 export default api;

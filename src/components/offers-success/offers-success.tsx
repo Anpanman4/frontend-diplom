@@ -19,7 +19,7 @@ const OffersSuccess: FC<OffersSuccessType> = () => {
         Ваш заказ №1232 успешно оформлен!
         <br />
         Информацию о состоянии заказа можно просматривать в{' '}
-        <Link className="offers-success__link" to="/personal">
+        <Link className="offers-success__link" to="/private">
           Личном кабинете
         </Link>
         .

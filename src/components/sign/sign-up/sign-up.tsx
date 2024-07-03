@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import api from '../../../http/api';
 import { CheckBox } from '../../theme/checkbox/checkbox';
 import Input from '../../theme/input/input';
 import Sign from '../sign';
 
-const SignUp = () => {
+type SignUpProps = {
+  setLoggedIn: (bool: boolean) => void;
+};
+
+const SignUp = ({ setLoggedIn }: SignUpProps) => {
   const navigation = useNavigate();
 
   const [emailInput, setEmailInput] = useState('');
@@ -24,7 +28,6 @@ const SignUp = () => {
       buttonTitle="Зарегистрироваться"
       isButtonDisabled={false}
       onButtonClick={() => {
-        console.log(emailInput, firstNameError);
         if (!emailInput) setEmailError('Введите почту');
         if (!passwordInput) setPasswordError('Введите пароль');
         if (!firstNameInput) setFirstNameError('Введите имя');
@@ -35,7 +38,10 @@ const SignUp = () => {
             password: passwordInput,
             firstName: firstNameInput
           })
-          .then((data) => data.status === 200 && navigation('/'))
+          .then((data) => {
+            data.status === 200 && navigation('/');
+            data && setLoggedIn(true);
+          })
           .catch((err) => {
             if (
               err.response.data.validation.body.message ===
@@ -50,6 +56,16 @@ const SignUp = () => {
         linkText: 'Войти'
       }}
     >
+      <Input
+        value={firstNameInput}
+        onChange={(string) => {
+          if (firstNameError) setFirstNameError('');
+          setFirstNameInput(string);
+        }}
+        label="Фамилия Имя"
+        maxWidth="none"
+        errorMessage={firstNameError}
+      />
       <Input
         value={emailInput}
         onChange={(string) => {
@@ -71,20 +87,22 @@ const SignUp = () => {
         maxWidth="none"
         errorMessage={passwordError}
       />
-      <Input
-        value={firstNameInput}
-        onChange={(string) => {
-          if (firstNameError) setFirstNameError('');
-          setFirstNameInput(string);
-        }}
-        label="Имя"
-        maxWidth="none"
-        errorMessage={firstNameError}
-      />
       <CheckBox
         checked={isChecked}
         onChange={() => setIsChecked((prev) => !prev)}
-        label="Согласен на обработку персональных данных"
+        label={
+          <>
+            Согласен на{' '}
+            <Link
+              to="/politic"
+              style={{
+                color: 'var(--color-dark-blue)'
+              }}
+            >
+              обработку персональных данных
+            </Link>
+          </>
+        }
       />
     </Sign>
   );

@@ -20,7 +20,7 @@ type TitleElementProps = DetailedHTMLProps<
 
 type Level = 1 | 2 | 3 | 4 | 5 | 6;
 type Height = 'normal' | 'short';
-type Color = 'black' | 'dark-blue';
+type Color = 'black' | 'dark-blue' | 'gray-1' | 'gray-2';
 
 export type TitleProps = Props<
   AsProps & {

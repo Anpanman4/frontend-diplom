@@ -7,6 +7,7 @@
   border-radius: 6px;
   padding: 12px 0;
   background-color: transparent;
+  transition: all 0.1s ease;
 
   &:not(.hg-button--disabled):hover {
     cursor: pointer;
@@ -16,5 +17,36 @@
   &--disabled {
     color: var(--color-gray-3);
     border-color: var(--color-gray-3);
+
+    .hg-button--light-blue {
+      background-color: var(--color-gray-5);
+    }
+  }
+
+  &--light-blue {
+    border: none;
+    background-color: var(--color-light-blue);
+    transition: all 0.1s ease;
+
+    &:not(.hg-button--disabled):hover {
+      cursor: pointer;
+      color: var(--color-white);
+      background-color: var(--color-dark-blue);
+
+      .hg-text {
+        color: var(--color-white);
+      }
+    }
+  }
+
+  &--red {
+    border: none;
+    background-color: var(--color-light-red);
+    transition: all 0.1s ease;
+
+    &:not(.hg-button--disabled):hover {
+      cursor: pointer;
+      background-color: var(--color-red);
+    }
   }
 }
