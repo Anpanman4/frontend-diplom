@@ -18,11 +18,16 @@ export type TableColumnProps<T extends object> = {
 export type TableProps<T extends object> = {
   data: T[];
   columns: TableColumnProps<T>[];
+  onRowClick?: (data: T) => void;
 };
 
 const defaultCellPosition: CellPosition = 'center';
 
-export const Table = <T extends object>({ columns, data }: TableProps<T>) => {
+export const Table = <T extends object>({
+  columns,
+  data,
+  onRowClick
+}: TableProps<T>) => {
   return (
     <table className="hg-table">
       <thead className="hg-table__head">
@@ -45,7 +50,11 @@ export const Table = <T extends object>({ columns, data }: TableProps<T>) => {
       </thead>
       <tbody className="hg-table__body">
         {data.map((row, index) => (
-          <tr key={index} className="hg-table__row">
+          <tr
+            key={index}
+            className="hg-table__row"
+            onClick={() => onRowClick?.(row)}
+          >
             {columns.map((column) => {
               return (
                 <td

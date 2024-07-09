@@ -1,0 +1,34 @@
+.hg-switcher {
+  width: 43px;
+  height: 24px;
+  border: 1.5px solid var(--color-black);
+  border-radius: 155px;
+  box-sizing: border-box;
+  position: relative;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  &__input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  &__slider {
+    position: absolute;
+    top: 2.5px;
+    left: 2.5px;
+    width: 18px;
+    height: 18px;
+    background-color: var(--color-gray-4);
+    border-radius: 50%;
+    transition: transform 0.4s ease;
+
+    &--active {
+      background-color: var(--color-dark-blue);
+      transform: translateX(19px);
+    }
+  }
+}

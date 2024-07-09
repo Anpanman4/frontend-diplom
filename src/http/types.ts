@@ -13,6 +13,17 @@ export type ProductType = {
   isVisible: boolean;
 };
 
+export type ProductUpdatingType = {
+  title: string;
+  about: string;
+  price: string;
+  smell: string[];
+  hairType: string[];
+  fixationDegree: number;
+  volume: number;
+  image: File;
+};
+
 export type ProductCountType = ProductType & {
   count: number;
 };

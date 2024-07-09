@@ -87,8 +87,12 @@ const App = () => {
     });
   };
 
-  useEffect(() => {
+  const refetchProducts = () => {
     api.getProducts().then((data) => setProducts(data));
+  };
+
+  useEffect(() => {
+    refetchProducts();
     chechToken();
   }, []);
 
@@ -189,7 +193,11 @@ const App = () => {
                 path="/private"
                 element={
                   userState?.roles.includes('Admin') ? (
-                    <PrivateAdmin user={userState} products={products} />
+                    <PrivateAdmin
+                      user={userState}
+                      products={products}
+                      refetchProducts={refetchProducts}
+                    />
                   ) : (
                     <Private
                       user={userState}

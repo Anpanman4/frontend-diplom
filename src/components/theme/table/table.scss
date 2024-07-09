@@ -6,6 +6,12 @@
   &__row {
     display: flex;
     box-sizing: border-box;
+    transition: background-color 0.15s ease-out;
+
+    tbody &:hover {
+      cursor: pointer;
+      background-color: var(--color-gray-5);
+    }
   }
 
   &__cell {

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { UserBody } from './types';
+import { ProductType, ProductUpdatingType, UserBody } from './types';
 
 class Api {
   private url: string;
@@ -50,6 +50,37 @@ class Api {
       .catch((err) => console.log(err));
   };
 
+  public createProduct = async (productData: ProductUpdatingType) => {
+    const data = new FormData();
+    Object.keys(productData).forEach((key) => {
+      // eslint-disable-next-line
+      // @ts-ignore
+      data.append(key, productData[key]);
+    });
+    return await axios
+      .post<ProductType>(`${this.url}/products/`, data, {
+        headers: this.headers
+      })
+      .then((data) => data.data)
+      .catch((err) => console.log(err));
+  };
+
+  public updateProductVisibility = async (
+    productId: string,
+    isVisible: boolean
+  ) => {
+    return await axios
+      .patch<ProductType>(
+        `${this.url}/products/visible/${productId}`,
+        {
+          isVisible
+        },
+        { headers: this.headers }
+      )
+      .then((data) => data.data)
+      .catch((err) => console.log(err));
+  };
+
   public registration = async (user: UserBody) => {
     return await axios
       .post(`${this.url}/register`, user)
@@ -66,7 +97,7 @@ class Api {
 }
 
 const api = new Api({
-  url: 'http://localhost:8000/api',
+  url: `${process.env.REACT_APP_BACKEND_URL}/api`,
   headers: {
     'Content-Type': 'application/json',
     Authorization: `Bearer ${localStorage.getItem('hairgrad-JWT')}`
