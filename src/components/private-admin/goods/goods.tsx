@@ -50,6 +50,11 @@ const Goods: FC<GoodsProps> = ({ user, products = [], refetchProducts }) => {
     value.title.toLowerCase().includes(searchInput)
   );
 
+  const onModalClose = () => {
+    setNewImage('');
+    setIsModalOpen(false);
+  };
+
   const fileHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event?.target?.files?.[0];
     if (!file) return;
@@ -166,8 +171,7 @@ const Goods: FC<GoodsProps> = ({ user, products = [], refetchProducts }) => {
           className="goods__modal"
           visible={isModalOpen}
           onClose={() => {
-            setNewImage('');
-            setIsModalOpen(false);
+            onModalClose();
           }}
         >
           <>
@@ -268,7 +272,10 @@ const Goods: FC<GoodsProps> = ({ user, products = [], refetchProducts }) => {
                     if (!imageFile) return;
                     api
                       .createProduct({ ...currentRow, image: imageFile })
-                      .then(() => refetchProducts());
+                      .then(() => {
+                        onModalClose();
+                        refetchProducts();
+                      });
                   }}
                 >
                   <Text level={4}>Добавить</Text>
@@ -288,7 +295,20 @@ const Goods: FC<GoodsProps> = ({ user, products = [], refetchProducts }) => {
                 <Button className="goods__modal-button" variant="red">
                   <Text level={4}>Удалить</Text>
                 </Button>
-                <Button className="goods__modal-button">
+                <Button
+                  className="goods__modal-button"
+                  onClick={() => {
+                    console.log(currentRow);
+                    api
+                      .updateProduct(currentRow._id, {
+                        ...currentRow
+                      })
+                      .then(() => {
+                        onModalClose();
+                        refetchProducts();
+                      });
+                  }}
+                >
                   <Text level={4}>Сохранить</Text>
                 </Button>
               </>

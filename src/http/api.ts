@@ -59,6 +59,19 @@ class Api {
     });
     return await axios
       .post<ProductType>(`${this.url}/products/`, data, {
+        headers: { ...this.headers, 'Content-Type': 'multipart/form-data' }
+      })
+      .then((data) => data.data)
+      .catch((err) => console.log(err));
+  };
+
+  public updateProduct = async (
+    id: string,
+    productData: Omit<ProductUpdatingType, 'image'>
+  ) => {
+    console.log(`${this.url}/products/${id}`, productData);
+    return await axios
+      .patch<ProductType>(`${this.url}/products/${id}`, productData, {
         headers: this.headers
       })
       .then((data) => data.data)
