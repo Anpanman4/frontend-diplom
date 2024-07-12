@@ -8,7 +8,6 @@ import catalog1 from '../../images/catalog-1.png';
 import catalog2 from '../../images/catalog-2.png';
 import catalog3 from '../../images/catalog-3.png';
 import searchIcon from '../../images/svg/search.svg';
-import { Filter } from '../theme/filter/filter';
 import Input from '../theme/input/input';
 import ProductCard from '../theme/product-card/product-card';
 import { Text } from '../theme/text/text';
@@ -82,7 +81,6 @@ const Catalog: FC<CatalogProps> = ({
           placeholder="Поиск"
           maxWidth="840px"
         />
-        <Filter />
       </div>
       <ul className="catalog__container">
         {currentContent &&

@@ -3,6 +3,7 @@ import './private-admin.scss';
 
 import { Navigate } from 'react-router-dom';
 
+import General from './general/general';
 import Goods from './goods/goods';
 import { ProductType, UserType } from '../../http/types';
 import { NavigationTab } from '../theme/navigation-tab/navigation-tab';
@@ -34,7 +35,7 @@ const PrivateAdmin: FC<PrivateAdminProps> = ({
               />
             )
           },
-          { label: 'Товары1s', body: '1s' }
+          { label: 'Общее', body: <General /> }
         ]}
       />
     </section>

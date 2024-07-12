@@ -114,11 +114,11 @@ const Basket: FC<BasketProps> = ({
           className="basket__button"
           onClick={() =>
             basketProducts?.length
-              ? navigation('/offers')
+              ? navigation('/catalog')
               : navigation('/catalog')
           }
         >
-          {basketProducts?.length ? 'Оформить заказ' : 'В каталог'}
+          {basketProducts?.length ? 'В каталог' : 'В каталог'}
         </Button>
       </div>
       <div className="basket__more">

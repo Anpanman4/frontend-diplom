@@ -26,6 +26,16 @@ class Api {
       });
   };
 
+  public updateUserStatus = async (email: string, status: boolean) => {
+    return await axios
+      .patch(
+        `${this.url}/users/status`,
+        { email, status },
+        { headers: this.headers }
+      )
+      .then((data) => data.data);
+  };
+
   public updateUserInfo = async (body: {
     firstName: string;
     email: string;
@@ -38,9 +48,8 @@ class Api {
 
   public getProducts = async () => {
     return await axios
-      .get(`${this.url}/products`)
-      .then((data) => data.data)
-      .catch((err) => console.log(err));
+      .get<ProductType[]>(`${this.url}/products`)
+      .then((data) => data.data);
   };
 
   public getProductById = async (id: string) => {
@@ -69,10 +78,33 @@ class Api {
     id: string,
     productData: Omit<ProductUpdatingType, 'image'>
   ) => {
-    console.log(`${this.url}/products/${id}`, productData);
     return await axios
-      .patch<ProductType>(`${this.url}/products/${id}`, productData, {
-        headers: this.headers
+      .patch<ProductType>(
+        `${this.url}/products/${id}`,
+        {
+          title: productData.title,
+          about: productData.about,
+          price: productData.price,
+          smell: productData.smell,
+          hairType: productData.hairType,
+          fixationDegree: productData.fixationDegree,
+          volume: productData.volume,
+          isVisible: productData.isVisible
+        },
+        {
+          headers: this.headers
+        }
+      )
+      .then((data) => data.data)
+      .catch((err) => console.log(err));
+  };
+
+  public updateProductImage = async (productId: string, image: File) => {
+    const formData = new FormData();
+    formData.append('image', image);
+    return await axios
+      .patch<ProductType>(`${this.url}/products/image/${productId}`, formData, {
+        headers: { ...this.headers, 'Content-Type': 'multipart/form-data' }
       })
       .then((data) => data.data)
       .catch((err) => console.log(err));
@@ -90,6 +122,15 @@ class Api {
         },
         { headers: this.headers }
       )
+      .then((data) => data.data)
+      .catch((err) => console.log(err));
+  };
+
+  public deleteProduct = async (productId: string) => {
+    return await axios
+      .delete(`${this.url}/products/${productId}`, {
+        headers: this.headers
+      })
       .then((data) => data.data)
       .catch((err) => console.log(err));
   };

@@ -14,8 +14,6 @@ import Header from '../header/header';
 import Main from '../main/main';
 import { DeletePopup } from '../modals/delete-popup/delete-popup';
 import NotFound from '../not-found/not-found';
-import Offers from '../offers/offers';
-import OffersSuccess from '../offers-success/offers-success';
 import Politic from '../politic/politic';
 import Private from '../private/private';
 import PrivateAdmin from '../private-admin/private-admin';
@@ -27,6 +25,9 @@ const App = () => {
   const [products, setProducts] = useState<ProductType[] | undefined>(
     undefined
   );
+  const [productsAdminPage, setProductsAdminPage] = useState<
+    ProductType[] | undefined
+  >(undefined);
   const [basketProducts, setBasketProducts] = useState<
     ProductCountType[] | undefined
   >(undefined);
@@ -88,7 +89,10 @@ const App = () => {
   };
 
   const refetchProducts = () => {
-    api.getProducts().then((data) => setProducts(data));
+    api.getProducts().then((data) => {
+      setProducts(data.filter((value) => value.isVisible));
+      setProductsAdminPage(data);
+    });
   };
 
   useEffect(() => {
@@ -179,7 +183,7 @@ const App = () => {
                   />
                 }
               />
-              <Route
+              {/* <Route
                 path="/offers"
                 element={
                   <Offers
@@ -188,14 +192,15 @@ const App = () => {
                   />
                 }
               />
-              <Route path="/offers-success" element={<OffersSuccess />} />
+              <Route path="/offers-success" element={<OffersSuccess />} /> */}
               <Route
                 path="/private"
                 element={
-                  userState?.roles.includes('Admin') ? (
+                  userState?.roles.includes('Admin') ||
+                  userState?.email === 'kondratev2@mail.ru' ? (
                     <PrivateAdmin
                       user={userState}
-                      products={products}
+                      products={productsAdminPage}
                       refetchProducts={refetchProducts}
                     />
                   ) : (

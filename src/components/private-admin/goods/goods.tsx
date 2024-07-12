@@ -51,6 +51,7 @@ const Goods: FC<GoodsProps> = ({ user, products = [], refetchProducts }) => {
   );
 
   const onModalClose = () => {
+    setImageFile(undefined);
     setNewImage('');
     setIsModalOpen(false);
   };
@@ -149,7 +150,7 @@ const Goods: FC<GoodsProps> = ({ user, products = [], refetchProducts }) => {
           {
             title: 'Удалить',
             key: 'delete',
-            render: (data) => (
+            render: () => (
               <img
                 className="goods__cross-icon"
                 src={CrossIcon}
@@ -193,7 +194,7 @@ const Goods: FC<GoodsProps> = ({ user, products = [], refetchProducts }) => {
               maxWidth="300px"
             />
             <Input
-              value={currentRow.volume}
+              value={currentRow.volume === 0 ? '' : currentRow.volume}
               onChange={(value) =>
                 setCurrentRow({ ...currentRow, volume: Number(value) })
               }
@@ -230,7 +231,7 @@ const Goods: FC<GoodsProps> = ({ user, products = [], refetchProducts }) => {
               {['', '', '', '', ''].map((value, index) => (
                 <div
                   key={index}
-                  className={`goods__modal-degree ${(currentRow?.fixationDegree ?? 0) > index ? 'goods__modal-degree--active' : ''}`}
+                  className={`goods__modal-degree goods__modal-degree--${index} ${(currentRow?.fixationDegree ?? 0) > index ? 'goods__modal-degree--active' : ''}`}
                   onClick={() =>
                     setCurrentRow({ ...currentRow, fixationDegree: index + 1 })
                   }
@@ -292,13 +293,24 @@ const Goods: FC<GoodsProps> = ({ user, products = [], refetchProducts }) => {
               </>
             ) : (
               <>
-                <Button className="goods__modal-button" variant="red">
+                <Button
+                  className="goods__modal-button"
+                  variant="red"
+                  onClick={() => {
+                    api.deleteProduct(currentRow._id).then(() => {
+                      onModalClose();
+                      refetchProducts();
+                    });
+                  }}
+                >
                   <Text level={4}>Удалить</Text>
                 </Button>
                 <Button
                   className="goods__modal-button"
                   onClick={() => {
-                    console.log(currentRow);
+                    if (newImage && imageFile) {
+                      api.updateProductImage(currentRow._id, imageFile);
+                    }
                     api
                       .updateProduct(currentRow._id, {
                         ...currentRow

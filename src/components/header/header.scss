@@ -46,6 +46,7 @@
     position: relative;
     border: 1px solid var(--color-black);
     border-radius: 50%;
+    transition: background-color 0.15s ease;
 
     img {
       position: absolute;
@@ -53,7 +54,7 @@
       left: 6px;
     }
 
-    &--active {
+    &--active, &:hover {
       background-color: var(--color-light-blue);
     }
   }

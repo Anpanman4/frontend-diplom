@@ -22,6 +22,7 @@ export type ProductUpdatingType = {
   fixationDegree: number;
   volume: number;
   image: File;
+  isVisible: boolean;
 };
 
 export type ProductCountType = ProductType & {

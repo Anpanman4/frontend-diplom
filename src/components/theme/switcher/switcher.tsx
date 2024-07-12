@@ -25,12 +25,17 @@ export const Switcher = component<SwitcherProps, HTMLDivElement>(
       <div
         className={classNames('hg-switcher', className)}
         ref={ref}
+        onClick={(event) => {
+          event.preventDefault();
+          event.stopPropagation();
+          onChange?.(!checked);
+        }}
         {...restProps}
       >
         <input
           className="hg-switcher__input"
           checked={checked}
-          onChange={() => onChange?.(!checked)}
+          onChange={() => ''}
           type="checkbox"
         />
         <span

@@ -11,7 +11,7 @@ import { Text } from '../text/text';
 export type CheckBoxProps = Props<
   {
     checked?: boolean;
-    onChange?: () => void;
+    onChange?: (value: boolean) => void;
     label?: string | ReactNode;
     className?: string;
   },
@@ -35,7 +35,7 @@ export const CheckBox = component<CheckBoxProps, HTMLDivElement>(
           ref={ref}
           onClick={(event) => {
             event.preventDefault();
-            onChange?.();
+            onChange?.(!checked);
           }}
         >
           <img

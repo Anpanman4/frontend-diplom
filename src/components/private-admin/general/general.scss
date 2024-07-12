@@ -1,0 +1,10 @@
+.general {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  &__text {
+    margin-bottom: 16px;
+  }
+}

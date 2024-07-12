@@ -12,6 +12,7 @@ export type InputProps = Props<
     label?: string;
     icon?: ReactNode;
     onIconClick?: () => void;
+    successMessage?: string;
     errorMessage?: string;
     maxWidth?: string;
   },
@@ -27,6 +28,7 @@ const Input = memo<InputProps>(
     icon,
     onIconClick,
     placeholder,
+    successMessage,
     errorMessage,
     maxWidth,
     className,
@@ -46,13 +48,16 @@ const Input = memo<InputProps>(
           </label>
         )}
         <input
-          className={classNames('input__container', {
-            ['input__container--label-text']: label,
-            ['input__container--label']: label && value,
-            ['input__container--focus']: isFocused,
-            ['input__container--error']: errorMessage,
+          className={classNames(
+            'input__container',
+            {
+              ['input__container--label-text']: label,
+              ['input__container--label']: label && value,
+              ['input__container--focus']: isFocused,
+              ['input__container--error']: errorMessage
+            },
             className
-          })}
+          )}
           value={value}
           onChange={(e) => onChange && onChange(e.target.value)}
           placeholder={placeholder}
@@ -73,6 +78,11 @@ const Input = memo<InputProps>(
         {errorMessage && (
           <Text className="input__error-message" level={4}>
             {errorMessage}
+          </Text>
+        )}
+        {successMessage && (
+          <Text className="input__success-message" level={4}>
+            {successMessage}
           </Text>
         )}
       </div>

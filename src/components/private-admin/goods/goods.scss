@@ -81,8 +81,15 @@
     height: 26px;
     border-radius: 50%;
     background-color: var(--color-gray-5);
+    transition: background-color 0.15s ease;
 
-    &--active {
+    &--active,
+    &--0:hover,
+    &--1:hover,
+    &--2:hover,
+    &--3:hover,
+    &--4:hover,
+    &--5:hover {
       background-color: var(--color-light-blue);
     }
 
